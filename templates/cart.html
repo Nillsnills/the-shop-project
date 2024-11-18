@@ -1,0 +1,54 @@
+{%  extends "base.html" %}
+
+{%  block title %}
+cart
+{%  endblock %}
+
+{% block content %}
+
+    {% if not cart %}
+        <div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+
+        <p class="text-center text-muted" style="font-size: 2em">Your cart is empty!</p>
+
+        </div>
+    {% else %}
+
+<div class="container">
+<div class="row">
+    {% for name, info in cart.items %}
+
+
+        <div class="col-sm-4">
+        <div class="card" style="width: 15rem;">
+                 <div class="card-body">
+                     <div class="card-title fw-bold text-success">
+                         {{ name }}
+                     </div>
+                     <div class="card-text">
+                         quantity : {{ info.quantity }}
+                     </div>
+                     <br>
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/shop/addcart/{{ info.id }}/" class="btn btn-success flex-fill m-3">+</a>
+                        <a href="/shop/remove/{{ info.id }}/" class="btn btn-success flex-fill m-3">-</a>
+
+                    </div>
+                 </div>
+            </div>
+        </div>
+
+         {% endfor %}
+
+</div>
+</div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-success" href="/shop/checkout">Checkout</a>
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}

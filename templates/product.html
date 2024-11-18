@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+    product
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+
+            <div class="card" style="width: 30rem;">
+            <div>
+                {% if product.image %}
+            <img class="card-img-top" src="{{ product.image.url }}" alt="Card image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+            </div>
+                <div class="card-body">
+                    <h2 class="card-title text-success">{{ product.name }}</h2>
+                    <p class="card-text">
+                        <span class="text-success"> Category: </span> {{ product.category.name }} <br> <br>
+                        {{ product.description }} <br> <br>
+                        <span class="text-success"> Price: </span>{{ product.price }}<br>
+                        <span class="text-success"> Stock: </span>{{ product.stock }}
+                    </p>
+                    <a href="/shop/addcart/{{ product.id }}/" class="btn btn-success">Add to Cart</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

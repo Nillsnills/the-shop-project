@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+    category
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-sm-4 mt-2">
+            <div class="card" style="width: 15rem;">
+                {% if product.image %}
+                   <img class="card-img-top" src="{{ product.image.url }}" alt="Card image">
+                {% else %}
+                   <p>No image available</p>
+                {% endif %}
+                 <div class="card-body">
+                     <div class="card-title fw-bold text-success">
+                         {{ product.name }}
+                     </div>
+                     <div class="card-text">
+                         price: {{ product.price }}
+                     </div>
+                     <br>
+                     <a href="/shop/product/{{ product.id }}/" class="btn btn-success">go to product page</a>
+                 </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+
+
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page.has_previous %}
+                <li class="page-item"><a class="page-link text-success" href="?page=1">&laquo; First</a></li>
+                <li class="page-item"><a class="page-link text-success" href="?page={{ page.previous_page_number }}">Previous</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link">&laquo; First</a></li>
+                <li class="page-item disabled"><a class="page-link">Previous</a></li>
+            {% endif %}
+
+            <li class="page-item disabled"><a class="page-link">Page {{ page.number }} of {{ page.paginator.num_pages }}</a></li>
+
+            {% if page.has_next %}
+                <li class="page-item"><a class="page-link text-success" href="?page={{ page.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link text-success" href="?page={{ page.paginator.num_pages }}">Last &raquo;</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link">Next</a></li>
+                <li class="page-item disabled"><a class="page-link">Last &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}

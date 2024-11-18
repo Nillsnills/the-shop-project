@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-sm bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand text-success" href="#">Our Shop</a>
+    <a class="navbar-brand text-success" href="{% url 'homepage' %}">My Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,7 +25,7 @@
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Your Orders</a>
+              <a class="nav-link" href="{% url 'orders' %}">Your Orders</a>
           </li>
 
           {% else %}
@@ -38,7 +38,7 @@
           {% endif %}
 
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+            <a class="nav-link" href="{% url 'cart' %}"><i class="bi bi-cart"></i></a>
         </li>
       </ul>
     </div>

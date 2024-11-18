@@ -18,10 +18,13 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from shop.views import homepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
+    path('shop/', include('shop.urls')),
+    path('', homepage, name="homepage"),
 ]
 
 if settings.DEBUG:

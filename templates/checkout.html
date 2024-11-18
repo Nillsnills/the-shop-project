@@ -1,0 +1,38 @@
+{%  extends "base.html" %}
+
+{%  block title %}
+checkout
+{%  endblock %}
+
+{% block content %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <form action="/shop/orderconfirm/" method="POST">
+     {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+            <label for="{{field.id_for_label}}"> {{field.label}}</label>
+            {{field}}
+            {% if field.errors %}
+            <div class="text-danger">
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        </div>
+
+        {%endfor%}
+     <button type="submit" class="btn btn-success mt-2">Confirm</button>
+
+
+    </form>
+
+{% endblock %}

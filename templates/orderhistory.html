@@ -1,0 +1,37 @@
+{%  extends "base.html" %}
+
+{%  block title %}
+order history
+{%  endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        {% for order in orders %}
+               <div class="col-sm-4">
+               <div class="d-flex justify-content-between">
+                   <p class="text-primary">{{ order.order_date }}</p>
+                   <p>{{ order.status }}</p>
+                   <p>total price: {{ order.total_price }}</p>
+               </div>
+
+
+           <div class="list-group mt-1">
+           {% for item in order_items %}
+           {% if item.order == order %}
+               <div class="list-group-item d-flex justify-content-between list-group-item-success">
+               <p class="small">{{ item.product.name }}</p>
+               <p class="small">unit price: {{ item.unit_price }}</p>
+               <p class="small">quantity: {{ item.quantity}}</p>
+               </div>
+           {% endif %}
+           {% endfor %}
+           </div>
+               </div>
+       {% endfor %}
+
+    </div>
+    </div>
+
+
+{% endblock %}
