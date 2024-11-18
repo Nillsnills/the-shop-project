@@ -12,7 +12,6 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, 'register successful')
             return redirect('homepage')
 
         else:
@@ -23,7 +22,6 @@ def register_view(request):
     return render(request, "UserRegister.html", context)
 
 
-
 def logout_custom(request):
     logout(request)
-    return redirect('base')
+    return redirect('homepage')
