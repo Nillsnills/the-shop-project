@@ -11,6 +11,10 @@ def register_view(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            if not user.is_superuser and not user.is_staff:
+                user.is_customer = True
+                user.save()
+
             login(request, user)
             return redirect('homepage')
 
