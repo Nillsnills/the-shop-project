@@ -25,7 +25,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     phone_number = models.CharField(unique=True, max_length=225)
-    is_customer = models.BooleanField(null=True, blank=True, default=False)
+    is_customer = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ['phone_number', 'first_name', 'email']
 
